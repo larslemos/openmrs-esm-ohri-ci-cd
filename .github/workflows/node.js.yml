@@ -2,14 +2,20 @@ name: Node.js CI
 
 on:
   push:
-    branches: [master]
+    tags:
+      - '*'
+    branches:
+      - master
+      - staging
+      - demo
+      - dev
   pull_request:
     branches: [master]
     types: [opened, synchronize, reopened, closed]
   release:
     types:
       - created
-
+gt
 env:
   ESM_NAME: "@openmrs/esm-ohri-app"
   JS_NAME: "openmrs-esm-ohri-app.js"
