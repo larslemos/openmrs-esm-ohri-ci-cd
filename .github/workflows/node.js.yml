@@ -15,7 +15,7 @@ on:
   release:
     types:
       - created
-gt
+
 env:
   ESM_NAME: "@openmrs/esm-ohri-app"
   JS_NAME: "openmrs-esm-ohri-app.js"
