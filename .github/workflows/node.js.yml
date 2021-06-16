@@ -127,7 +127,7 @@ jobs:
       - name: SCP file via ssh password to Transfer Files Upload Artifacts to DO
         uses: appleboy/scp-action@v0.1.1
         with: 
-          host: ${{ secretDIGITAL_OCEAN_PORT.DIGITAL_OCEAN_HOST }}
+          host: ${{ secrets.DIGITAL_OCEAN_HOST }}
           username: ${{ secrets.DIGITAL_OCEAN_USERNAME }}
           port: ${{ secrets.DIGITAL_OCEAN_PORT }}
           password: ${{ secrets.DIGITAL_OCEAN_PASSWORD }}
