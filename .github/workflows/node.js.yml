@@ -124,8 +124,10 @@ jobs:
     #       NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
 
     steps:
-      - uses: appleboy/scp-action@master
-      - name: Upload Artifacts to DO
+      - uses: actions/checkout@master
+      - name: copy file via ssh password
+        uses: appleboy/scp-action@v0.1.1
+      - name: SCP Command to Transfer Files Upload Artifacts to DO
         with: 
           host: ${{ secretDIGITAL_OCEAN_PORT.DIGITAL_OCEAN_HOST }}
           username: ${{ secrets.DIGITAL_OCEAN_USERNAME }}
@@ -134,4 +136,5 @@ jobs:
           # key: ${{ secrets.KEY }}
           source: "dist"
           target: "dist_latest"
+          debug: true
 
