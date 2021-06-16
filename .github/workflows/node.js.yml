@@ -17,8 +17,8 @@ on:
       - created
 
 env:
-  ESM_NAME: "openmrs-esm-ohri-app"
-  JS_NAME: "openmrs-esm-ohri-app.js"
+  ESM_NAME: "openmrs-esm-ohri-form"
+  JS_NAME: "openmrs-esm-ohri-form.js"
 
 jobs:
   build:
