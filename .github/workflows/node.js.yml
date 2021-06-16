@@ -111,7 +111,12 @@ jobs:
   release:
     runs-on: ubuntu-latest
 
+<<<<<<< HEAD
     needs: deploy
+=======
+    needs: build
+ 
+>>>>>>> 2a4dd2c063a6e01ac9c032454dd187da9aa664fb
 
     # steps:
     #   - uses: actions/checkout@v2
