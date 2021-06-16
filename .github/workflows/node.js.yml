@@ -106,8 +106,7 @@ jobs:
     runs-on: ubuntu-latest
 
     needs: build
-
-    if: ${{ github.event_name == 'release' }}
+ 
 
     # steps:
     #   - uses: actions/checkout@v2
