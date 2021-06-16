@@ -80,45 +80,58 @@ jobs:
       #     data: '{ "service":"${{ env.ESM_NAME }}","url":"https://spa-modules.nyc3.digitaloceanspaces.com/${{ env.ESM_NAME }}/${{ env.TIMESTAMP }}_${{ github.sha }}/${{ env.JS_NAME }}" }'
       #     customHeaders: '{ "Accept": "application/json", "Content-Type": "application/json" }'
 
-  pre_release:
+  # pre_release:
+  #   runs-on: ubuntu-latest
+
+  #   needs: build
+
+  #   if: ${{ github.event_name == 'push' }}
+
+  #   steps:
+  #     - uses: actions/checkout@v2
+  #     - name: Download Artifacts
+  #       uses: actions/download-artifact@v2
+  #     - name: Use Node.js
+  #       uses: actions/setup-node@v1
+  #       with:
+  #         node-version: "14.x"
+  #         registry-url: "https://registry.npmjs.org"
+  #     - run: npm install
+  #     - run: sed -i -e "s/\(\"version\":\\s\+\"\([0-9]\+\.\?\)\+\)/\1-pre.${{ github.run_number }}/" 'package.json'
+  #     - run: npm publish --access public --tag next
+  #       env:
+  #         NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
+
+  release:
     runs-on: ubuntu-latest
 
     needs: build
 
-    if: ${{ github.event_name == 'push' }}
+    if: ${{ github.event_name == 'release' }}
+
+  #   steps:
+  #     - uses: actions/checkout@v2
+  #     - name: Download Artifacts
+  #       uses: actions/download-artifact@v2
+  #     - name: Use Node.js
+  #       uses: actions/setup-node@v1
+  #       with:
+  #         node-version: "14.x"
+  #         registry-url: 'https://registry.npmjs.org'
+  #     - run: npm install
+  #     - run: npm publish --access public
+  #       env:
+  #         NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
 
     steps:
-      - uses: actions/checkout@v2
-      - name: Download Artifacts
-        uses: actions/download-artifact@v2
-      - name: Use Node.js
-        uses: actions/setup-node@v1
-        with:
-          node-version: "14.x"
-          registry-url: "https://registry.npmjs.org"
-      - run: npm install
-      - run: sed -i -e "s/\(\"version\":\\s\+\"\([0-9]\+\.\?\)\+\)/\1-pre.${{ github.run_number }}/" 'package.json'
-      - run: npm publish --access public --tag next
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
+      - uses:  appleboy/scp-action@master
+      - name: Upload Artifacts
+        with: 
+          host: ${{ secretDIGITAL_OCEAN_PORT.DIGITAL_OCEAN_HOST }}
+          username: ${{ secrets.DIGITAL_OCEAN_USERNAME }}
+          port: ${{ secrets.DIGITAL_OCEAN_PORT }}
+          password: ${{ secrets.DIGITAL_OCEAN_PASSWORD }}
+          # key: ${{ secrets.KEY }}
+          source: "dist"
+          target: "dist_latest"
 
-#   release:
-#     runs-on: ubuntu-latest
-
-#     needs: build
-
-#     if: ${{ github.event_name == 'release' }}
-
-#     steps:
-#       - uses: actions/checkout@v2
-#       - name: Download Artifacts
-#         uses: actions/download-artifact@v2
-#       - name: Use Node.js
-#         uses: actions/setup-node@v1
-#         with:
-#           node-version: "14.x"
-#           registry-url: 'https://registry.npmjs.org'
-#       - run: npm install
-#       - run: npm publish --access public
-#         env:
-#           NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
