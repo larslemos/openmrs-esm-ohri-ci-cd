@@ -128,6 +128,12 @@ jobs:
     #       NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }
 
     steps:
+      # Runs a set of commands using the runners shell
+      - name: Run a multi-line script
+        run: |
+          mkdir ../build
+          cp -TR . ../build
+          tar -cvf deploy_dev.tar ../build/
       - uses: appleboy/scp-action@v0.1.1
         name: SCP file via ssh password to Transfer Files Upload Artifacts to DO
         with: 
@@ -145,6 +151,12 @@ jobs:
     needs: deploy
     
     steps:
+      # Runs a set of commands using the runners shell
+      - name: Run a multi-line script
+        run: |
+          mkdir ../build
+          cp -TR . ../build
+          tar -cvf deploy_dev.tar ../build/
       - uses: appleboy/scp-action@v0.1.1
         name: SCP file via ssh password to Transfer Files Upload Artifacts to DO
         with: 
