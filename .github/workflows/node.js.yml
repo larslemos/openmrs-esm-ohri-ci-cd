@@ -59,7 +59,7 @@ jobs:
         run: |
           mkdir ../build
           cp -TR . ../build
-          tar -cvf deploy.tar ../build/
+          tar -cvf deploy_dev.tar ../build/
       - name: Prepare Directory
         shell: bash
         run: |
@@ -142,7 +142,7 @@ jobs:
           port: ${{ secrets.DIGITAL_OCEAN_PORT }}
           password: ${{ secrets.DIGITAL_OCEAN_PASSWORD }}
           # key: ${{ secrets.KEY }}
-          source: "deploy.tar"
+          source: "deploy_dev.tar"
           target: "dist_latest"
           debug: true
   test:
@@ -165,6 +165,6 @@ jobs:
           port: ${{ secrets.HISTAC_PORT }}
           password: ${{ secrets.HISTAC_PASSWORD }}
           # key: ${{ secrets.KEY }}
-          source: "deploy.tar"
+          source: "deploy_dev.tar"
           target: "dist_latest"
           debug: true      
