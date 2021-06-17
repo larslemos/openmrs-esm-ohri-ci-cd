@@ -53,13 +53,7 @@ jobs:
       - name: Download Artifacts
         uses: actions/download-artifact@v2
       - name: Compute Timestamp
-        run: echo "TIMESTAMP=$(date +'%Y-%m-%d')" >> $GITHUB_ENV
-        # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
-        run: |
-          mkdir ../build
-          cp -TR . ../build
-          tar -cvf deploy_dev.tar ../build/
+        run: echo "TIMESTAMP=$(date +'%Y-%m-%d')" >> $GITHUB_ENV      
       - name: Prepare Directory
         shell: bash
         run: |
@@ -166,6 +160,7 @@ jobs:
           port: ${{ secrets.HISTAC_PORT }}
           password: ${{ secrets.HISTAC_PASSWORD }}
           # key: ${{ secrets.KEY }}
+          proxy_port: ${{ secrets.HISTAC_PROXY_PORT }}
           source: "deploy_dev.tar"
           target: "dist_latest"
           debug: true      
