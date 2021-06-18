@@ -158,8 +158,8 @@ jobs:
           host: ${{ secrets.HISTAC_HOST }}
           username: ${{ secrets.HISTAC_USERNAME }}
           port: ${{ secrets.HISTAC_PORT }}
-          password: ${{ secrets.HISTAC_PASSWORD }}
-          # key: ${{ secrets.KEY }}
+#           password: ${{ secrets.HISTAC_PASSWORD }}
+          key: ${{ secrets.HISTAC_KEY }}
           proxy_port: ${{ secrets.HISTAC_PROXY_PORT }}
           source: "deploy_dev.tar"
           target: "dist_latest"
