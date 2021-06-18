@@ -83,8 +83,8 @@ jobs:
           name: Run the Update MicroFronEnd Script
           with:
             command: cd /usr/share/tomcat/microfrontends/dev && sh update_microfrontends.sh
-            host: ${{ secrets.HOST }}
-            username: garygrossgarten
+            host: ${{ secrets.HISTAC_HOST }}
+            username: ${{ secrets.HISTAC_USERNAME }}
             passphrase: ${{ secrets.HISTAC_PASSPHRASE }}
             privateKey: ${{ secrets.HISTAC_KEY}}
           
