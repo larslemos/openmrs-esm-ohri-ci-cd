@@ -76,7 +76,8 @@ jobs:
           passphrase: ${{ secrets.HISTAC_PASSPHRASE }}
           proxy_port: ${{ secrets.HISTAC_PROXY_PORT }}
           source: "deploy_dev.tar"
-          target: "dist_latest"
+#           target: "dist_latest"
+          target: "/usr/share/tomcat/"
           debug: true   
           
       # - name: Publish to Digital Ocean
